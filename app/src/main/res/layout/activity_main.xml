@@ -12,18 +12,21 @@
         <FrameLayout
             android:id="@android:id/tabcontent"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
 
             <TextView
                 android:id="@+id/tab_content1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="textView 1"/>
+
             <TextView
                 android:id="@+id/tab_content2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="textView 2"/>
+
             <TextView
                 android:id="@+id/tab_content3"
                 android:layout_width="match_parent"
@@ -41,6 +44,7 @@
 
         <TabWidget
             android:id="@android:id/tabs"
+            android:padding="16dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
     </LinearLayout>
