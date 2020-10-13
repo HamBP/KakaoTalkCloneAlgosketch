@@ -16,24 +16,25 @@ public class MainActivity extends AppCompatActivity {
         TabHost host = findViewById(R.id.host);
         host.setup();
 
-        TabHost.TabSpec spec = host.newTabSpec("tab1");
-        spec.setIndicator(null, ResourcesCompat.getDrawable(getResources(), R.drawable.ic_person, null));
+        TabHost.TabSpec spec = host.newTabSpec("friends");
+        spec.setIndicator(null, ResourcesCompat.getDrawable(getResources(), R.drawable.tab_selector_friends, null));
         spec.setContent(R.id.tab_content1);
         host.addTab(spec);
 
-        spec = host.newTabSpec("tab2");
-        spec.setIndicator(null, ResourcesCompat.getDrawable(getResources(), R.drawable.ic_speech_bubble, null));
+        spec = host.newTabSpec("chatting");
+        spec.setIndicator(null, ResourcesCompat.getDrawable(getResources(), R.drawable.tab_selector_chat, null));
         spec.setContent(R.id.tab_content2);
         host.addTab(spec);
 
-        spec = host.newTabSpec("tab3");
-        spec.setIndicator(null, ResourcesCompat.getDrawable(getResources(), R.drawable.ic_pound, null));
+        spec = host.newTabSpec("issues");
+        spec.setIndicator(null, ResourcesCompat.getDrawable(getResources(), R.drawable.tab_selector_hashtag, null));
         spec.setContent(R.id.tab_content3);
         host.addTab(spec);
 
-        spec = host.newTabSpec("tab4");
-        spec.setIndicator(null, ResourcesCompat.getDrawable(getResources(), R.drawable.ic_etc, null));
+        spec = host.newTabSpec("etc");
+        spec.setIndicator(null, ResourcesCompat.getDrawable(getResources(), R.drawable.tab_selector_etc, null));
         spec.setContent(R.id.tab_content4);
         host.addTab(spec);
     }
+
 }
