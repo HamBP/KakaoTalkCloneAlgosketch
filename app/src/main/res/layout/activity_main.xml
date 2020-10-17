@@ -1,51 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- TODO : TabHost -> TabLayout & ViewPager -->
-<TabHost
-    android:id="@+id/host"
+
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/main_linear_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+    android:orientation="vertical">
 
-    <LinearLayout
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/content_viewpager"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_height="wrap_content"
+        android:layout_weight="1"/>
 
-        <FrameLayout
-            android:id="@android:id/tabcontent"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1">
-
-            <TextView
-                android:id="@+id/tab_content1"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="textView 1"/>
-
-            <TextView
-                android:id="@+id/tab_content2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="textView 2"/>
-
-            <TextView
-                android:id="@+id/tab_content3"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="textView 3"/>
-
-            <TextView
-                android:id="@+id/tab_content4"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="textView 4"/>
-        </FrameLayout>
-
-        <TabWidget
-            android:id="@android:id/tabs"
-            android:paddingVertical="16dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
-    </LinearLayout>
-</TabHost>
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/tabs"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"/>
+</LinearLayout>

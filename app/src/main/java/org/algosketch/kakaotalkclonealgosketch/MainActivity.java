@@ -1,40 +1,68 @@
 package org.algosketch.kakaotalkclonealgosketch;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.res.ResourcesCompat;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentPagerAdapter;
+import androidx.viewpager.widget.ViewPager;
 
 import android.os.Bundle;
+import android.widget.LinearLayout;
 import android.widget.TabHost;
 
+import com.google.android.material.tabs.TabLayout;
+
+import java.util.ArrayList;
+import java.util.List;
+
 public class MainActivity extends AppCompatActivity {
+    LinearLayout mainLayout;
+    ViewPager contentViewPager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        TabHost host = findViewById(R.id.host);
-        host.setup();
+        mainLayout = findViewById(R.id.main_linear_layout);
+        contentViewPager = findViewById(R.id.content_viewpager);
 
-        TabHost.TabSpec spec = host.newTabSpec("friends");
-        spec.setIndicator(null, ResourcesCompat.getDrawable(getResources(), R.drawable.tab_selector_friends, null));
-        spec.setContent(R.id.tab_content1);
-        host.addTab(spec);
+        contentViewPager.setAdapter(new ContentViewPagerAdapter(getSupportFragmentManager()));
 
-        spec = host.newTabSpec("chatting");
-        spec.setIndicator(null, ResourcesCompat.getDrawable(getResources(), R.drawable.tab_selector_chat, null));
-        spec.setContent(R.id.tab_content2);
-        host.addTab(spec);
-
-        spec = host.newTabSpec("issues");
-        spec.setIndicator(null, ResourcesCompat.getDrawable(getResources(), R.drawable.tab_selector_hashtag, null));
-        spec.setContent(R.id.tab_content3);
-        host.addTab(spec);
-
-        spec = host.newTabSpec("etc");
-        spec.setIndicator(null, ResourcesCompat.getDrawable(getResources(), R.drawable.tab_selector_etc, null));
-        spec.setContent(R.id.tab_content4);
-        host.addTab(spec);
+        TabLayout tabLayout = findViewById(R.id.tabs);
+        tabLayout.setupWithViewPager(contentViewPager);
     }
 
+    class ContentViewPagerAdapter extends FragmentPagerAdapter {
+        List<Fragment> fragments = new ArrayList<Fragment>();
+        private String titles[] = new String[] {"friends", "chatting", "hashtag", "etc"};
+
+        public ContentViewPagerAdapter(FragmentManager fm) {
+            super(fm);
+            //fragments.add(); TODO : 각 프레그먼트 구현 후 추가하기
+            //fragments.add();
+            //fragments.add();
+            //fragments.add();
+        }
+
+        @NonNull
+        @Override
+        public Fragment getItem(int position) {
+            return this.fragments.get(position);
+        }
+
+        @Override
+        public int getCount() {
+            return fragments.size();
+        }
+
+        @Nullable
+        @Override
+        public CharSequence getPageTitle(int position) {
+            return this.titles[position];
+        }
+    }
 }
