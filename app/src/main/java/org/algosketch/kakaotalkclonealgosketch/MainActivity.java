@@ -74,7 +74,15 @@ public class MainActivity extends FragmentActivity {
         @NonNull
         @Override
         public Fragment createFragment(int position) {
-            return new TestFragment();
+            switch (position) {
+                case 0:
+                    return new FriendsFragment();
+                case 1:
+                case 2:
+                case 3:
+                default:
+                    return new TestFragment();
+            }
         }
 
         @Override

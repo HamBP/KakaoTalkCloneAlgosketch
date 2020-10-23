@@ -3,11 +3,11 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     xmlns:android="http://schemas.android.com/apk/res/android">
-    <!--<androidx.appcompat.app.AlertController.RecycleListView
+    <androidx.recyclerview.widget.RecyclerView
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/recyclerview_friends"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-    </androidx.appcompat.app.AlertController.RecycleListView>-->
+    </androidx.recyclerview.widget.RecyclerView>
 </LinearLayout>

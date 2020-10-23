@@ -22,16 +22,17 @@ public class FriendsFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        /*RecyclerView recyclerView = getView().findViewById(R.id.recyclerview_friends);
+        View view = inflater.inflate(R.layout.fragment_friends, null);
+
+        RecyclerView recyclerView = view.findViewById(R.id.recyclerview_friends);
         List<String> list = new ArrayList<>();
         for(int i = 0; i < 20; ++i) {
-            list.add("Item=" + i);
+            list.add("friend " + i);
         }
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setAdapter(new RecyclerViewAdapter(list));
-        recyclerView.addItemDecoration(new RecyclerViewItemDecoration());*/
 
-        return (LinearLayout)inflater.inflate(R.layout.fragment_friends, container, false);
+        return view;
     }
 
     private class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewHolder> {
@@ -70,18 +71,4 @@ public class FriendsFragment extends Fragment {
         }
     }
 
-    // class
-    class RecyclerViewItemDecoration extends RecyclerView.ItemDecoration {
-        @Override
-        public void getItemOffsets(@NonNull Rect outRect, @NonNull View view, @NonNull RecyclerView parent, @NonNull RecyclerView.State state) {
-            super.getItemOffsets(outRect, view, parent, state);
-            int index = parent.getChildAdapterPosition(view) + 1;
-            if (index % 3 == 0)
-                outRect.set(20, 20, 20, 60);
-            else
-                outRect.set(20, 20, 20, 20);
-            view.setBackgroundColor(0xFFECE9E9);
-            ViewCompat.setElevation(view, 20.0f);
-        }
-    }
 }
