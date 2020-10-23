@@ -45,7 +45,22 @@ public class MainActivity extends FragmentActivity {
                 new TabLayoutMediator.TabConfigurationStrategy() {
                     @Override
                     public void onConfigureTab(@NonNull TabLayout.Tab tab, int position) {
-                        tab.setText("TAB " + (position + 1));
+                        switch (position) {
+                            case 0:
+                                tab.setIcon(R.drawable.tab_selector_friends);
+                                break;
+                            case 1:
+                                tab.setIcon(R.drawable.tab_selector_chat);
+                                break;
+                            case 2:
+                                tab.setIcon(R.drawable.tab_selector_hashtag);
+                                break;
+                            case 3:
+                                tab.setIcon(R.drawable.tab_selector_etc);
+                                break;
+                            default:
+                                tab.setText("TAB");
+                        }
                     }
                 }
         ).attach();
