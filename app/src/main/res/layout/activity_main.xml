@@ -7,6 +7,59 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
+    <androidx.appcompat.widget.Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="48dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="친구"
+                android:textSize="32sp"
+                android:textStyle="bold"
+                android:textColor="#000"/>
+
+            <ImageButton
+                android:padding="8dp"
+                android:scaleType="centerCrop"
+                android:layout_height="48dp"
+                android:layout_width="48dp"
+                android:src="@drawable/ic_search"
+                android:background="#0000"/>
+
+            <ImageButton
+                android:padding="8dp"
+                android:scaleType="centerCrop"
+                android:layout_height="48dp"
+                android:layout_width="48dp"
+                android:src="@drawable/ic_person"
+                android:background="#0000"/>
+
+            <ImageButton
+                android:padding="8dp"
+                android:scaleType="centerCrop"
+                android:layout_height="48dp"
+                android:layout_width="48dp"
+                android:src="@drawable/ic_music"
+                android:background="#0000"/>
+
+            <ImageButton
+                android:padding="8dp"
+                android:scaleType="centerCrop"
+                android:layout_height="48dp"
+                android:layout_width="48dp"
+                android:src="@drawable/ic_settings"
+                android:background="#0000"/>
+        </LinearLayout>
+
+    </androidx.appcompat.widget.Toolbar>
+
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/content_viewpager"
         android:layout_width="match_parent"
