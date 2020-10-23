@@ -17,7 +17,7 @@
             android:padding="12dp"
             android:layout_width="96dp"
             android:layout_height="match_parent"
-            android:src="@drawable/ic_selected_speech_bubble"/>
+            android:src="@drawable/ic_speech_bubble"/>
 
         <TextView
             android:id="@+id/txt_name"

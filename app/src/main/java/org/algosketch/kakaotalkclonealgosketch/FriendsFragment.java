@@ -15,6 +15,8 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import org.w3c.dom.Text;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,8 +28,26 @@ public class FriendsFragment extends Fragment {
 
         RecyclerView recyclerView = view.findViewById(R.id.recyclerview_friends);
         List<ItemVO> list = new ArrayList<>();
-        for(int i = 0; i < 20; ++i) {
-            ItemVO vo = new ItemVO();
+
+        for(int i = 0; i < 5; ++i) {
+            ProfileVO vo = new ProfileVO();
+
+            BitmapFactory.Options options = new BitmapFactory.Options();
+            options.inJustDecodeBounds = false;
+            Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.ic_selected_speech_bubble, options);
+            vo.setProfileImage(bitmap);
+
+            vo.setName("김이름");
+            vo.setProfileMassage("상태 메시지");
+            list.add(vo);
+        }
+
+        HeaderVO hvo = new HeaderVO();
+        hvo.setTitle("친구");
+        list.add(hvo);
+
+        for(int i = 0; i < 5; ++i) {
+            ProfileVO vo = new ProfileVO();
 
             BitmapFactory.Options options = new BitmapFactory.Options();
             options.inJustDecodeBounds = false;
@@ -44,7 +64,7 @@ public class FriendsFragment extends Fragment {
         return view;
     }
 
-    private class RecyclerViewAdapter extends RecyclerView.Adapter<FriendsViewHolder> {
+    private class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         private List<ItemVO> list;
 
         public RecyclerViewAdapter(List<ItemVO> list) {
@@ -53,26 +73,48 @@ public class FriendsFragment extends Fragment {
 
         @NonNull
         @Override
-        public FriendsViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_friend, parent, false);
-            return new FriendsViewHolder(view);
+        public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+            if(viewType == ItemVO.TYPE_PROFILE) {
+                View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_friend, parent, false);
+                return new ProfileViewHolder(view);
+            } else {
+                View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_header, parent, false);
+                return new HeaderViewHolder(view);
+            }
         }
 
         @Override
-        public void onBindViewHolder(@NonNull FriendsViewHolder holder, int position) {
+        public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
             ItemVO vo = list.get(position);
-            holder.profileImage.setImageBitmap(vo.profileImage);
-            holder.name.setText(vo.name);
-            holder.profileMassage.setText(vo.profileMassage);
+
+            if(vo.getType() == ItemVO.TYPE_PROFILE) {
+                ((ProfileViewHolder)holder).profileImage.setImageBitmap(((ProfileVO)vo).profileImage);
+                ((ProfileViewHolder)holder).name.setText(((ProfileVO)vo).name);
+                ((ProfileViewHolder)holder).profileMassage.setText(((ProfileVO)vo).profileMassage);
+            } else {
+                ((HeaderViewHolder)holder).titleView.setText(((HeaderVO)vo).title);
+            }
         }
 
         @Override
         public int getItemCount() {
             return this.list.size();
         }
+
+        @Override
+        public int getItemViewType(int position) {
+            return list.get(position).getType();
+        }
     }
 
-    class ItemVO {
+    abstract class ItemVO {
+        public static final int TYPE_PROFILE = 0;
+        public static final int TYPE_HEADER = 1;
+
+        abstract int getType();
+    }
+
+    class ProfileVO extends ItemVO {
         Bitmap profileImage;
         String name;
         String profileMassage;
@@ -88,19 +130,46 @@ public class FriendsFragment extends Fragment {
         public void setProfileMassage(String profileMassage) {
             this.profileMassage = profileMassage;
         }
+
+        @Override
+        int getType() {
+            return TYPE_PROFILE;
+        }
+    }
+
+    class HeaderVO extends ItemVO {
+        String title;
+
+        public void setTitle(String title) {
+            this.title = title;
+        }
+
+        @Override
+        int getType() {
+            return TYPE_HEADER;
+        }
     }
 
     // class
-    private class FriendsViewHolder extends RecyclerView.ViewHolder {
+    private class ProfileViewHolder extends RecyclerView.ViewHolder {
         public ImageView profileImage;
         public TextView name;
         public TextView profileMassage;
 
-        public FriendsViewHolder(@NonNull View itemView) {
+        public ProfileViewHolder(@NonNull View itemView) {
             super(itemView);
             profileImage = itemView.findViewById(R.id.img_profile);
             name = itemView.findViewById(R.id.txt_name);
             profileMassage = itemView.findViewById(R.id.txt_profile_massage);
+        }
+    }
+
+    private class HeaderViewHolder extends RecyclerView.ViewHolder {
+        public TextView titleView;
+
+        public HeaderViewHolder(@NonNull View itemView) {
+            super(itemView);
+            titleView = itemView.findViewById(R.id.txt_header_title);
         }
     }
 
